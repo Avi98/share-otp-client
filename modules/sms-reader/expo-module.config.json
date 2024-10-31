@@ -1,9 +1,0 @@
-{
-  "platforms": ["ios", "tvos", "android", "web"],
-  "ios": {
-    "modules": ["SmsReaderModule"]
-  },
-  "android": {
-    "modules": ["expo.modules.smsreader.SmsReaderModule"]
-  }
-}
