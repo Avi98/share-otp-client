@@ -1,0 +1,41 @@
+{
+  "name": "@avi98/sms-read",
+  "version": "0.1.0",
+  "description": "read sms from the module",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "scripts": {
+    "build": "expo-module build",
+    "clean": "expo-module clean",
+    "lint": "expo-module lint",
+    "test": "expo-module test",
+    "prepare": "expo-module prepare",
+    "prepublishOnly": "expo-module prepublishOnly",
+    "expo-module": "expo-module",
+    "open:ios": "xed example/ios",
+    "open:android": "open -a \"Android Studio\" example/android"
+  },
+  "keywords": [
+    "react-native",
+    "expo",
+    "sms-read",
+    "SmsRead"
+  ],
+  "repository": "https://github.com/Avi98/sms-read",
+  "bugs": {
+    "url": "https://github.com/Avi98/sms-read/issues"
+  },
+  "author": "avi98 <9958703925.dad@gmail.com> (https://github.com/Avi98)",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/react": "^18.0.25",
+    "expo-module-scripts": "^3.5.2",
+    "expo-modules-core": "^1.12.24"
+  },
+  "peerDependencies": {
+    "expo": "*",
+    "react": "*",
+    "react-native": "*"
+  }
+}

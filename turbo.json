@@ -1,0 +1,30 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "tasks": {
+    "build": {
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": ["build/**"]
+    },
+    "android:app": {
+      "cache": false,
+      "outputs": ["android/**"]
+    },
+    "ios:app": {
+      "cache": false,
+      "outputs": ["ios/**"]
+    },
+    "android": {
+      "cache": false,
+      "dependsOn": ["^build"]
+    },
+    "ios": {
+      "cache": false,
+      "dependsOn": ["^build"]
+    },
+    "lint": {},
+    "dev": {
+      "cache": false,
+      "persistent": true
+    }
+  }
+}
