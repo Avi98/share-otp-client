@@ -1,0 +1,24 @@
+{
+  "name": "mobile",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "expo start",
+    "android:app": "npx expo run:android --variant=freeDebug",
+    "ios:app": "npx expo run:ios --variant=freeDebug",
+    "web": "expo start --web",
+    "android": "expo run:android",
+    "ios": "expo run:ios"
+  },
+  "dependencies": {
+    "expo": "~51.0.28",
+    "react": "18.2.0",
+    "react-native": "0.74.5"
+  },
+  "expo": {
+    "autolinking": {
+      "nativeModulesDir": "../../packages"
+    }
+  },
+  "private": true
+}
