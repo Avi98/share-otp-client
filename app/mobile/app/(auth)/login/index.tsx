@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { router } from "expo-router";
 import { MaskedTextInput } from "react-native-mask-text";
-import { Button } from "../../components/ui/button";
-import { Input } from "../../components/ui/input";
+import { Button } from "../../../components/ui/button";
+import { Input } from "../../../components/ui/input";
 
 export default function Login() {
   const [phone, setPhone] = useState("");
@@ -21,19 +21,19 @@ export default function Login() {
   };
 
   return (
-    <View className="flex-1 bg-background p-4 justify-center">
-      <View className="space-y-6">
-        <Text className="text-2xl font-bold text-foreground">Welcome Back</Text>
+    <View style={styles.container}>
+      <View style={styles.innerContainer}>
+        <Text style={styles.title}>Welcome Back</Text>
 
-        <View className="space-y-4">
-          <View className="bg-muted rounded-lg overflow-hidden">
+        <View style={styles.inputContainer}>
+          <View style={styles.phoneInputContainer}>
             <MaskedTextInput
               mask="+91 9999999999"
               onChangeText={(text, rawText) => setPhone(rawText)}
               value={phone}
               keyboardType="numeric"
               placeholder="Enter phone number"
-              className="px-4 py-3 text-foreground w-full"
+              style={styles.phoneInput}
             />
           </View>
 
@@ -58,11 +58,44 @@ export default function Login() {
         </View>
 
         <TouchableOpacity onPress={() => router.push("/signup")}>
-          <Text className="text-primary text-center">
-            Don't have an account? Sign up
-          </Text>
+          <Text style={styles.signupText}>Don't have an account? Sign up</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#FFFFFF", // Replace with your theme color
+    padding: 16,
+    justifyContent: "center",
+  },
+  innerContainer: {
+    spaceY: 24, // Adjust as needed
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "#000000", // Replace with your theme color
+  },
+  inputContainer: {
+    spaceY: 16, // Adjust as needed
+  },
+  phoneInputContainer: {
+    backgroundColor: "#F1F5F9", // Replace with your theme color
+    borderRadius: 8,
+    overflow: "hidden",
+  },
+  phoneInput: {
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    color: "#000000", // Replace with your theme color
+    width: "100%",
+  },
+  signupText: {
+    color: "#0891B2", // Replace with your theme color
+    textAlign: "center",
+  },
+});
