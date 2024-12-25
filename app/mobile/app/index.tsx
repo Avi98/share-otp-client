@@ -1,24 +1,24 @@
-import "expo-dev-client";
-import * as SmsRead from "@avi98/sms-read";
-import { StatusBar } from "expo-status-bar";
+import { Text, useColorScheme, View } from "react-native";
+import { Stack } from "expo-router";
+import { ThemeProvider } from "../components/themeProvider";
+import * as DevClient from "expo-dev-client";
 
-import { StyleSheet, Text, View } from "react-native";
+export default function RootLayout() {
+  const colorScheme = useColorScheme();
 
-export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Test if rerenders</Text>
-      <Text>{SmsRead.hello()}</Text>
-      <StatusBar style="auto" />
-    </View>
+    <ThemeProvider defaultTheme="system" forcedTheme={colorScheme}>
+      {/* <Stack>
+        <Stack.Screen
+          name="(auth)/login"
+          options={{ headerShown: false, title: "Login" }}
+        />
+        {/* <Stack.Screen name="(app)" options={{ headerShown: false }} /> */}
+      {/* </Stack> */}
+
+      <View>
+        <Text> This is index js</Text>
+      </View>
+    </ThemeProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

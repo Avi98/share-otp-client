@@ -5,6 +5,9 @@
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": ["build/**"]
     },
+    "start": {
+      "cache": false
+    },
     "android:app": {
       "cache": false,
       "outputs": ["android/**"]
