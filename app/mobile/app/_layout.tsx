@@ -8,14 +8,23 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider defaultTheme="system" forcedTheme={colorScheme}>
-      <Stack screenOptions={{ headerShown: false }}>
+      <Stack
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
         <Stack.Screen
-          name="(auth)"
+          name="/"
           options={{
             headerShown: false,
           }}
         />
-        <Stack.Screen name="modal" options={{ presentation: "modal" }} />
+        <Stack.Screen
+          name="/signup"
+          options={{
+            headerShown: false,
+          }}
+        />
       </Stack>
     </ThemeProvider>
   );
