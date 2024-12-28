@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { router } from "expo-router";
 import { MaskedTextInput } from "react-native-mask-text";
-import { Button } from "../../../components/ui/button";
-import { Input } from "../../../components/ui/input";
+import { Button } from "../components/ui/button";
+import { Input } from "../components/ui/input";
 
 export default function Login() {
   const [phone, setPhone] = useState("");
@@ -22,7 +22,7 @@ export default function Login() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.innerContainer}>
+      <View style={styles.card}>
         <Text style={styles.title}>Welcome Back</Text>
 
         <View style={styles.inputContainer}>
@@ -72,21 +72,30 @@ const styles = StyleSheet.create({
     padding: 16,
     justifyContent: "center",
   },
-  innerContainer: {
-    spaceY: 24, // Adjust as needed
+  card: {
+    backgroundColor: "#FFFFFF", // Replace with your theme color
+    borderRadius: 8,
+    padding: 16,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 5,
   },
   title: {
     fontSize: 24,
     fontWeight: "bold",
     color: "#000000", // Replace with your theme color
+    marginBottom: 16,
   },
   inputContainer: {
-    spaceY: 16, // Adjust as needed
+    marginBottom: 16,
   },
   phoneInputContainer: {
     backgroundColor: "#F1F5F9", // Replace with your theme color
     borderRadius: 8,
     overflow: "hidden",
+    marginBottom: 16,
   },
   phoneInput: {
     paddingHorizontal: 16,
@@ -97,5 +106,6 @@ const styles = StyleSheet.create({
   signupText: {
     color: "#0891B2", // Replace with your theme color
     textAlign: "center",
+    marginTop: 16,
   },
 });
