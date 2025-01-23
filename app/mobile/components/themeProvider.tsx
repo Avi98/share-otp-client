@@ -1,6 +1,8 @@
+"use client";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useColorScheme } from "react-native";
 import { lightTheme, darkTheme } from "../app/theme";
+import { ThemeProvider as RNThemeProvider, createTheme } from "@rneui/themed";
 
 type Theme = "dark" | "light" | "system";
 
@@ -17,6 +19,16 @@ interface ThemeContextType {
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+
+const themeP = createTheme({
+  lightColors: lightTheme.colors,
+  darkColors: darkTheme.colors,
+  components: {
+    Button: {
+      raised: true,
+    },
+  },
+});
 
 export function ThemeProvider({
   children,
@@ -37,7 +49,7 @@ export function ThemeProvider({
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme, colors }}>
-      {children}
+      <RNThemeProvider theme={themeP}>{children}</RNThemeProvider>
     </ThemeContext.Provider>
   );
 }
