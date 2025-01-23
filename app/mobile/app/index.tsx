@@ -17,7 +17,8 @@ export default function Login() {
 
   const handleVerifyOtp = () => {
     // TODO: Implement OTP verification logic
-    router.replace("/(app)/profile");
+    // router.replace("/ReceivedOtp");
+    router.replace("/received");
   };
 
   return (
