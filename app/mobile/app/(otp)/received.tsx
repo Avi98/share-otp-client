@@ -1,33 +1,102 @@
 import { useState } from "react";
-import { View, Text, ScrollView, StyleSheet, Platform } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  StyleSheet,
+  Platform,
+  Image,
+} from "react-native";
 import { FloatingButton } from "../../components/ui/floatingButton";
 import { Avatar } from "../../components/ui/avatar";
+import { MerchantChips } from "../../components/ui/merchantChips";
 
 export type UserType = {
   id: number;
   name: string;
   phone: string;
   avatar: string;
+  merchants: Array<{
+    id: number;
+    name: string;
+    icon: string;
+  }>;
 };
 
-const USERS = [
+const USERS: UserType[] = [
   {
     id: 1,
     name: "John Doe",
     phone: "+1 234 567 8900",
     avatar: "https://i.pravatar.cc/150?u=1",
+    merchants: [
+      {
+        id: 1,
+        name: "Amazon",
+        icon: "https://www.google.com/s2/favicons?domain=moreretail.in",
+      },
+      {
+        id: 2,
+        name: "PayPal",
+        icon: "https://www.google.com/s2/favicons?domain=flipkart.com",
+      },
+      {
+        id: 3,
+        name: "Google",
+        icon: "https://www.google.com/s2/favicons?domain=lenskart.com",
+      },
+      {
+        id: 4,
+        name: "Google",
+        icon: "https://www.google.com/s2/favicons?domain=blinkit.com",
+      },
+    ],
   },
   {
     id: 2,
     name: "Jane Smith",
     phone: "+1 234 567 8901",
     avatar: "https://i.pravatar.cc/150?u=2",
+    merchants: [
+      {
+        id: 1,
+        name: "Amazon",
+        icon: "https://www.google.com/s2/favicons?domain=amazon.com",
+      },
+      {
+        id: 2,
+        name: "PayPal",
+        icon: "https://www.google.com/s2/favicons?domain=paypal.com",
+      },
+      {
+        id: 3,
+        name: "Google",
+        icon: "https://www.google.com/s2/favicons?domain=google.com",
+      },
+    ],
   },
   {
     id: 3,
     name: "Mike Johnson",
     phone: "+1 234 567 8902",
     avatar: "https://i.pravatar.cc/150?u=3",
+    merchants: [
+      {
+        id: 1,
+        name: "Amazon",
+        icon: "https://www.google.com/s2/favicons?domain=amazon.com",
+      },
+      {
+        id: 2,
+        name: "PayPal",
+        icon: "https://www.google.com/s2/favicons?domain=paypal.com",
+      },
+      {
+        id: 3,
+        name: "Google",
+        icon: "https://www.google.com/s2/favicons?domain=google.com",
+      },
+    ],
   },
 ];
 
@@ -43,7 +112,10 @@ export default function ReceivedOTP() {
               <Avatar user={user} />
               <View style={styles.textContainer}>
                 <Text style={styles.title}>{user.name}</Text>
-                <Text style={styles.subtitle}>{user.phone}</Text>
+                <Text style={styles.subtitle}>
+                  {user.phone.replace(/(\d{3})\s*\d{3}\s*(\d{4})/, "$1 *** $2")}
+                </Text>
+                <MerchantChips user={user} />
               </View>
             </View>
           </View>
