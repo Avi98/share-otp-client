@@ -1,11 +1,14 @@
-import {
-  View,
-  Text,
-  ScrollView,
-  Image,
-  StyleSheet,
-  Platform,
-} from "react-native";
+import { useState } from "react";
+import { View, Text, ScrollView, StyleSheet, Platform } from "react-native";
+import { FloatingButton } from "../../components/ui/floatingButton";
+import { Avatar } from "../../components/ui/avatar";
+
+export type UserType = {
+  id: number;
+  name: string;
+  phone: string;
+  avatar: string;
+};
 
 const USERS = [
   {
@@ -29,20 +32,29 @@ const USERS = [
 ];
 
 export default function ReceivedOTP() {
+  const [isMenuVisible, setIsMenuVisible] = useState(false);
+
   return (
-    <ScrollView style={styles.container}>
-      {USERS.map((user) => (
-        <View key={user.id} style={styles.card}>
-          <View style={styles.avatarTextContainer}>
-            <Image source={{ uri: user.avatar }} style={styles.avatar} />
-            <View style={styles.textContainer}>
-              <Text style={styles.title}>{user.name}</Text>
-              <Text style={styles.subtitle}>{user.phone}</Text>
+    <View style={styles.container}>
+      <ScrollView>
+        {USERS.map((user) => (
+          <View key={user.id} style={styles.card}>
+            <View style={styles.avatarTextContainer}>
+              <Avatar user={user} />
+              <View style={styles.textContainer}>
+                <Text style={styles.title}>{user.name}</Text>
+                <Text style={styles.subtitle}>{user.phone}</Text>
+              </View>
             </View>
           </View>
-        </View>
-      ))}
-    </ScrollView>
+        ))}
+      </ScrollView>
+      <View style={styles.fab}>
+        <FloatingButton onPress={() => setIsMenuVisible(true)}>
+          <Text style={styles.fabText}>+</Text>
+        </FloatingButton>
+      </View>
+    </View>
   );
 }
 
@@ -52,16 +64,25 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     padding: 16,
   },
-
+  textContainer: {
+    flex: 1,
+    flexDirection: "column",
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 4,
+  },
+  subtitle: {
+    fontSize: 14,
+    color: "#666",
+  },
   avatarTextContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     gap: 10,
   },
-  textContainer: {
-    flex: 1,
-    flexDirection: "column",
-  },
+
   card: {
     backgroundColor: "#FFFFFF",
     borderRadius: 8,
@@ -79,19 +100,32 @@ const styles = StyleSheet.create({
       },
     }),
   },
-  avatar: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    marginBottom: 8,
+
+  fab: {
+    position: "absolute",
+    right: 20,
+    bottom: 20,
+    backgroundColor: "#007AFF",
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    justifyContent: "center",
+    alignItems: "center",
+    ...Platform.select({
+      ios: {
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+      },
+      android: {
+        elevation: 5,
+      },
+    }),
   },
-  title: {
-    fontSize: 18,
+  fabText: {
+    fontSize: 24,
+    color: "#FFFFFF",
     fontWeight: "bold",
-    marginBottom: 4,
-  },
-  subtitle: {
-    fontSize: 14,
-    color: "#666",
   },
 });
